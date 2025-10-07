@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tarjeta de Negocio - Jose Arroyo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#000000" />
+  <title>Tarjeta - Jose Arroyo</title>
   <style>
     :root {
       --magenta: #E20074;
-      --bg: #000000;
-      --text: #FFFFFF;
+      --bg: #000;
+      --text: #fff;
     }
     * { box-sizing: border-box; }
     html, body {
@@ -18,203 +18,88 @@
       background: var(--bg);
       color: var(--text);
       font-family: "Times New Roman", Times, serif;
+      font-size: clamp(15px, 1.6vw, 18px);
+      -webkit-text-size-adjust: 100%;
     }
     .wrap {
-      min-height: 100%;
+      min-height: 100dvh;
       display: grid;
       place-items: center;
-      padding: 24px;
+      padding: calc(env(safe-area-inset-top, 0px) + 16px)
+               calc(env(safe-area-inset-right, 0px) + 16px)
+               calc(env(safe-area-inset-bottom, 0px) + 16px)
+               calc(env(safe-area-inset-left, 0px) + 16px);
     }
     .card {
-      width: 100%;
-      max-width: 420px;
-      background: #0a0a0a;
+      width: min(94vw, 420px);
+      background: #0b0b0b;
       border: 1px solid #1f1f1f;
       border-radius: 20px;
-      padding: 28px;
+      padding: 22px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.45);
     }
-    .brand {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-      gap: 12px;
+    /* Logo centrado dentro de la tarjeta */
+    .logo-center { text-align: center; margin: 4px 0 8px 0; }
+    .logo-center img {
+      max-width: min(64%, 220px); /* evita que se salga del cuadro */
+      height: auto;
+      display: inline-block;
     }
-    .brand .dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--magenta);
-      box-shadow: 0 0 18px rgba(226,0,116,0.6);
-    }
-    .brand .name {
-      font-size: 14px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #d7d7d7;
-    }
-    .title {
-      font-size: 28px;
-      line-height: 1.1;
-      margin: 8px 0 4px 0;
-      color: #fff;
-    }
-    .role {
-      font-size: 18px;
-      color: #cccccc;
-      margin: 0 0 12px 0;
-    }
-    .company {
-      font-size: 16px;
-      color: #f1f1f1;
-      margin-bottom: 18px;
-    }
+    .title { text-align: center; font-size: clamp(22px, 5.5vw, 28px); margin: 8px 0 4px; color: #fff; }
+    .role, .company { text-align: center; margin: 0; color: #dcdcdc; }
+    .company { color: #f1f1f1; margin-bottom: 12px; }
+
     .divider {
-      height: 1px;
-      background: linear-gradient(90deg, rgba(226,0,116,0.3), rgba(255,255,255,0.15), rgba(226,0,116,0.3));
-      margin: 12px 0 18px 0;
-      border: none;
+      height: 1px; border: none;
+      background: linear-gradient(90deg, rgba(226,0,116,0.35), rgba(255,255,255,0.12), rgba(226,0,116,0.35));
+      margin: 12px 0 16px;
     }
     .row {
-      display: grid;
-      grid-template-columns: 26px 1fr;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 12px;
-      color: #eaeaea;
-      word-break: break-word;
+      display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items:center;
+      margin-bottom: 12px; color:#eaeaea; word-break: break-word;
     }
-    .row .icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
-      background: #111;
-      display: grid;
-      place-items: center;
-      border: 1px solid #222;
-    }
-    .row a {
-      color: #eaeaea;
-      text-decoration: none;
-    }
-    .row a:focus, .row a:hover {
-      text-decoration: underline;
-      text-decoration-color: var(--magenta);
-    }
-    .cta {
-      margin-top: 20px;
-      display: grid;
-      gap: 12px;
-    }
+    .icon { width: 26px; height:26px; border-radius: 8px; background:#111; display:grid; place-items:center; border:1px solid #222; }
+    a { color:#eaeaea; text-decoration: none; }
+    a:hover, a:focus { text-decoration: underline; text-decoration-color: var(--magenta); }
+    .cta { margin-top: 18px; display: grid; gap: 12px; }
     .btn {
-      appearance: none;
-      display: inline-block;
-      width: 100%;
-      padding: 14px 16px;
-      text-align: center;
-      font-size: 16px;
-      border-radius: 14px;
-      border: 1px solid var(--magenta);
-      background: var(--magenta);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: .2px;
-      transition: transform .05s ease, box-shadow .15s ease;
+      appearance: none; display:block; width:100%; padding: 14px 16px; text-align:center;
+      font-size: 16px; border-radius: 14px; border: 1px solid var(--magenta);
+      background: var(--magenta); color: #fff; text-decoration: none; font-weight: bold;
+      letter-spacing: .2px; transition: transform .05s ease, box-shadow .15s ease;
       box-shadow: 0 10px 20px rgba(226,0,116,0.3);
     }
-    .btn:active {
-      transform: translateY(1px);
-      box-shadow: 0 6px 14px rgba(226,0,116,0.25);
+    .btn:active { transform: translateY(1px); box-shadow: 0 6px 14px rgba(226,0,116,0.25); }
+    .btn.secondary { background: transparent; color:#fff; border-color:#3a3a3a; box-shadow:none; }
+    footer { margin-top: 12px; text-align:center; font-size: 12px; color:#9c9c9c; opacity:.85; }
+    footer::after { content: ""; } /* pie en blanco */
+
+    @media (max-width: 360px) { .card { padding: 18px; } }
+    @media (min-width: 1024px) {
+      .wrap { place-items: start center; }
+      .card { margin-top: 6vh; }
     }
-    .btn.secondary {
-      background: transparent;
-      color: #fff;
-      border-color: #3a3a3a;
-      box-shadow: none;
-    }
-    footer {
-      margin-top: 16px;
-      text-align: center;
-      font-size: 12px;
-      color: #9c9c9c;
-      opacity: .85;
-    }
-    .badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border: 1px solid #333;
-      border-radius: 999px;
-      font-size: 11px;
-      color: #bcbcbc;
-    }
-  .header {
-  display: grid;
-  grid-template-columns: 84px 1fr auto;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 14px;
-}
-/* .avatar-wrap { (removed) */
-  width: 84px;
-  height: 84px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--magenta);
-  box-shadow: 0 8px 18px rgba(226,0,116,0.35);
-}
-/* .avatar-wrap img { (removed) */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.logo-wrap img {
-  max-height: 40px;
-  width: auto;
-  display: block;
-  filter: none;
-}
-.id-block { margin: 0; }
-</style>
+  </style>
 </head>
 <body>
   <div class="wrap">
     <main class="card" role="main" aria-label="Tarjeta de negocio de Jose Arroyo">
-      <div class="header">
-  <!-- avatar removed -->
-    
-  </div>
-  <div class="id-block">
-    <div class="brand">
-      <div class="dot" aria-hidden="true"></div>
-      <div class="name">ESTILO T-MOBILE</div>
-      <span class="badge">Tarjeta Digital</span>
-    </div>
-    
-    
-    
-  </div>
-  <div class="logo-wrap">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/T-Mobile_US_Logo_2022_RGB_Magenta_on_Transparent.svg" alt="Logo (opcional)" />
-  </div>
-</div>
 
-
-        <div class="dot" aria-hidden="true"></div>
-        <div class="name">ESTILO T‑MOBILE</div>
-        <span class="badge">Tarjeta Digital</span>
+      <!-- Logo centrado -->
+      <div class="logo-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/T-Mobile_US_Logo_2022_RGB_Magenta_on_Transparent.svg" alt="T-Mobile" />
       </div>
 
-      
-      
-      <p class="company">T‑Mobile</p>
+      <!-- Nombre, cargo, empresa -->
+      <h1 class="title">Jose Arroyo</h1>
+      <p class="role">Mobile Expert</p>
+      <p class="company">T-Mobile</p>
 
       <hr class="divider" />
 
       <div class="row">
         <div class="icon" aria-hidden="true">📱</div>
-        <div><a href="tel:+17874691593" aria-label="Llamar por teléfono">+1 (787) 469‑1593</a></div>
+        <div><a href="tel:+17874691593" aria-label="Llamar por teléfono">+1 (787) 469-1593</a></div>
       </div>
 
       <div class="row">
@@ -223,25 +108,45 @@
       </div>
 
       <div class="cta">
-    <!-- Botón WhatsApp -->
-    <a class="btn secondary" href="https://wa.me/17874691593" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp">
-      WhatsApp
-    </a>
-
-        <!-- Botón magenta: Añadir a contactos -->
-        <a class="btn" href="./jose_arroyo.vcf" download aria-label="Añadir contacto VCF">
-          Añadir a contactos
-        </a>
-        <!-- Botón secundario: Llamar ahora -->
-        <a class="btn secondary" href="tel:+17874691593" aria-label="Llamar ahora">
-          Llamar ahora
-        </a>
+        <a class="btn" id="add-contact" aria-label="Añadir contacto VCF">Añadir a contactos</a>
+        <a class="btn secondary" href="tel:+17874691593" aria-label="Llamar ahora">Llamar ahora</a>
+        <a class="btn secondary" href="https://wa.me/17874691593" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp">WhatsApp</a>
       </div>
 
-      <footer>
-        Hecho para compartir fácilmente tu información de contacto.
-      </footer>
+      <footer></footer>
     </main>
   </div>
+
+  <script>
+  // vCard (fallback por si la descarga directa no funciona en el navegador/app)
+  const VCARD_TEXT = `BEGIN:VCARD
+VERSION:3.0
+N:Arroyo;Jose;;;
+FN:Jose Arroyo
+TITLE:Mobile Expert
+ORG:T-Mobile
+TEL;TYPE=CELL,VOICE:+1-787-469-1593
+EMAIL;TYPE=INTERNET:jose.arroyo29@t-mobile.com
+END:VCARD`;
+
+  function triggerVCardDownload() {
+    try {
+      const blob = new Blob([VCARD_TEXT], { type: 'text/vcard;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Jose_Arroyo.vcf';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 400);
+    } catch (e) {
+      window.location.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(VCARD_TEXT);
+    }
+  }
+  document.getElementById('add-contact').addEventListener('click', (ev) => {
+    ev.preventDefault();
+    triggerVCardDownload();
+  });
+  </script>
 </body>
 </html>
