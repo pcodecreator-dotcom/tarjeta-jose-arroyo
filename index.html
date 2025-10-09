@@ -6,121 +6,59 @@
   <meta name="theme-color" content="#000000" />
   <title>Jose Arroyo | Mobile Expert</title>
   <style>
-    :root {
-      --magenta: #E20074;
-      --bg: #000;
-      --text: #fff;
-      --soft: #f4f4f4;
+    :root{
+      --magenta:#E20074;
+      --bg:#000; --text:#fff;
+      /* Controles finos (ajústalos si quieres 1:1) */
+      --logo-max: clamp(150px, 58%, 260px); /* tamaño del logo */
+      --glow1: 0 0 10px rgba(226,0,116,.60);
+      --glow2: 0 0 24px rgba(226,0,116,.45);
+      --frame: 10px;                         /* grosor marco blanco */
     }
-    * { box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      -webkit-text-size-adjust: 100%;
+    *{box-sizing:border-box}
+    html,body{
+      height:100%; margin:0; background:var(--bg); color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      -webkit-text-size-adjust:100%;
     }
-
-    /* Lienzo */
-    .wrap {
-      min-height: 100dvh;
-      display: grid;
-      place-items: start center;
-      padding: calc(env(safe-area-inset-top, 0px) + 16px)
-               calc(env(safe-area-inset-right, 0px) + 16px)
-               calc(env(safe-area-inset-bottom, 0px) + 16px)
-               calc(env(safe-area-inset-left, 0px) + 16px);
+    .wrap{
+      min-height:100dvh; display:grid; place-items:start center;
+      padding:calc(env(safe-area-inset-top,0px)+16px)
+              calc(env(safe-area-inset-right,0px)+16px)
+              calc(env(safe-area-inset-bottom,0px)+16px)
+              calc(env(safe-area-inset-left,0px)+16px);
     }
-
-    /* Card negro tipo ejemplo */
-    .card {
-      width: min(94vw, 420px);
-      background: #000;
-      border-radius: 18px;
-      padding: 20px 18px 26px;
-      box-shadow: 0 0 0 6px #fff inset;     /* marco blanco como en la captura */
+    .card{
+      width:min(94vw,420px);
+      background:#000;
+      border-radius:18px;
+      padding:22px 18px 28px;
+      /* Marco blanco interior grueso como en la captura */
+      box-shadow:0 0 0 var(--frame) #fff inset;
     }
-
-    /* Logo centrado con “glow” magenta */
-    .logo {
-      text-align: center;
-      margin: 18px 0 14px;
+    .logo{ text-align:center; margin:18px 0 12px }
+    .logo img{
+      display:inline-block; width:var(--logo-max); height:auto;
+      filter:drop-shadow(var(--glow1)) drop-shadow(var(--glow2));
     }
-    .logo img {
-      display: inline-block;
-      max-width: min(64%, 220px);
-      height: auto;
-      filter: drop-shadow(0 0 8px rgba(226,0,116,.55))
-              drop-shadow(0 0 18px rgba(226,0,116,.35));
+    .name{
+      font-weight:800; font-size:32px; text-align:center;
+      margin:6px 0 12px; letter-spacing:.2px;
     }
-
-    /* Tipografía y jerarquía como el ejemplo */
-    .name {
-      font-weight: 800;
-      font-size: 28px;
-      text-align: center;
-      margin: 4px 0 10px;
-      letter-spacing: .2px;
+    .line{ text-align:center; margin:0; font-size:22px; line-height:1.35 }
+    .rule{ height:1px; background:#fff; opacity:.18; margin:16px auto 14px; width:92% }
+    .address{
+      text-align:center; font-size:24px; line-height:1.25; color:#fff; margin:18px 0 12px;
+      text-decoration:underline; text-decoration-style:dotted; text-decoration-thickness:2px; text-underline-offset:8px;
     }
-    .role, .company, .field, .line {
-      text-align: center;
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.35;
-      color: #fff;
-    }
-
-    /* Línea divisoria fina (simula la del ejemplo) */
-    .rule { 
-      height: 1px; 
-      background: #fff; 
-      opacity: .18; 
-      margin: 16px auto 12px; 
-      width: 92%;
-    }
-
-    /* Dirección con subrayado punteado */
-    .address {
-      text-align: center;
-      font-size: 24px;
-      line-height: 1.25;
-      color: #fff;
-      margin: 18px 0 10px;
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-underline-offset: 6px;
-    }
-
-    /* Enlace magenta “Click to download T-Life” */
-    .tlife {
-      text-align: center;
-      margin: 16px 0 28px;
-      font-size: 26px;
-    }
-    .tlife a {
-      color: var(--magenta);
-      text-decoration: none;
-    }
-
-    /* Botón grande redondeado */
-    .cta {
-      display: grid;
-      place-items: center;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--magenta);
-      color: #fff;
-      font-weight: 700;
-      font-size: 24px;
-      padding: 16px 28px;
-      border-radius: 999px;
-      text-decoration: none;
-      min-width: 78%;
-      text-align: center;
-      letter-spacing: .3px;
-      box-shadow: 0 10px 22px rgba(226,0,116,.35);
+    .tlife{ text-align:center; margin:14px 0 28px; font-size:26px }
+    .tlife a{ color:var(--magenta); text-decoration:none }
+    .cta{ display:grid; place-items:center }
+    .btn{
+      display:inline-block; background:var(--magenta); color:#fff; font-weight:700;
+      font-size:24px; padding:18px 30px; border-radius:999px; text-decoration:none;
+      min-width:85%; text-align:center; letter-spacing:.3px;
+      box-shadow:0 12px 26px rgba(226,0,116,.35);
     }
   </style>
 </head>
@@ -128,17 +66,17 @@
   <div class="wrap">
     <main class="card" role="main" aria-label="Digital business card">
 
-      <!-- Logo T-MOBILE centrado -->
+      <!-- Logo T-MOBILE centrado con glow -->
       <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/T_from_T_Mobile_logo.svg" alt="T-Mobile logo" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/T_from_T_Mobile_logo.svg" alt="T-Mobile" />
       </div>
 
-      <!-- Nombre, cargo, empresa y contacto (formato exacto del ejemplo) -->
+      <!-- Texto exactamente como en el ejemplo -->
       <h1 class="name">Jose Arroyo</h1>
-      <p class="role">Mobile Expert</p>
-      <p class="company">T-Mobile;</p>
-      <p class="field">jose.arroyo29@t-mobile.com</p>
-      <p class="field">Mobile: 787.469.1593</p>
+      <p class="line">Mobile Expert</p>
+      <p class="line">T-Mobile;</p>
+      <p class="line">jose.arroyo29@t-mobile.com</p>
+      <p class="line">Mobile: 787.469.1593</p>
 
       <div class="rule"></div>
 
@@ -148,7 +86,7 @@
       </p>
 
       <div class="tlife">
-        <a href="#" id="tlife-link">Click to download T-Life</a>
+        <a id="tlife-link" href="#">Click to download T-Life</a>
       </div>
 
       <div class="cta">
@@ -158,40 +96,35 @@
   </div>
 
   <script>
-    // vCard (igual a jose_arroyo.vcf) — descarga robusta en móviles
+    // vCard a descargar (igual que archivo .vcf)
     const VCARD_TEXT = `BEGIN:VCARD
 VERSION:3.0
 N:Arroyo;Jose;;;
 FN:Jose Arroyo
 TITLE:Mobile Expert
 ORG:T-Mobile
-TEL;TYPE=CELL,VOICE:+1-787-469-159-3
+TEL;TYPE=CELL,VOICE:+1-787-469-1593
 EMAIL;TYPE=INTERNET:jose.arroyo29@t-mobile.com
 ADR;TYPE=WORK:;;100 San Patricio Ave Ste C-20;Guaynabo;PR;00968;USA
-END:VCARD`.replace("469-159-3","469-1593");
+END:VCARD`;
 
-    (function () {
-      const addBtn = document.getElementById('add-contact');
-      addBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        try {
-          const blob = new Blob([VCARD_TEXT], { type: 'text/vcard;charset=utf-8' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'Jose_Arroyo.vcf';
-          document.body.appendChild(a);
-          a.click();
-          setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 400);
-        } catch (err) {
-          // Fallback para webviews
-          window.location.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(VCARD_TEXT);
-        }
-      });
+    // Descarga robusta para móviles / webviews
+    function downloadVCard(){
+      try{
+        const blob = new Blob([VCARD_TEXT],{type:'text/vcard;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'Jose_Arroyo.vcf';
+        document.body.appendChild(a); a.click();
+        setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 400);
+      }catch(e){
+        window.location.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(VCARD_TEXT);
+      }
+    }
+    document.getElementById('add-contact').addEventListener('click', e => { e.preventDefault(); downloadVCard(); });
 
-      // Si tienes el link real de T-Life, colócalo aquí:
-      document.getElementById('tlife-link').href = '#';
-    })();
+    // Si tienes el enlace real de T-Life, colócalo aquí:
+    document.getElementById('tlife-link').href = '#';
   </script>
 </body>
 </html>
