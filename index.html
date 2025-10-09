@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- VERSION v11 EXACT MATCH -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#000000" />
@@ -9,11 +10,10 @@
     :root{
       --magenta:#E20074;
       --bg:#000; --text:#fff;
-      /* Controles finos (ajústalos si quieres 1:1) */
-      --logo-max: clamp(150px, 58%, 260px); /* tamaño del logo */
-      --glow1: 0 0 10px rgba(226,0,116,.60);
-      --glow2: 0 0 24px rgba(226,0,116,.45);
-      --frame: 10px;                         /* grosor marco blanco */
+      --logo-max: clamp(170px, 62%, 280px); /* tamaño del logo T (igual al ejemplo) */
+      --glow1: 0 0 12px rgba(226,0,116,.60);
+      --glow2: 0 0 28px rgba(226,0,116,.45);
+      --frame: 10px; /* grosor del marco blanco interior */
     }
     *{box-sizing:border-box}
     html,body{
@@ -33,20 +33,16 @@
       background:#000;
       border-radius:18px;
       padding:22px 18px 28px;
-      /* Marco blanco interior grueso como en la captura */
-      box-shadow:0 0 0 var(--frame) #fff inset;
+      box-shadow:0 0 0 var(--frame) #fff inset; /* marco blanco */
     }
-    .logo{ text-align:center; margin:18px 0 12px }
+    .logo{ text-align:center; margin:18px 0 16px }
     .logo img{
       display:inline-block; width:var(--logo-max); height:auto;
       filter:drop-shadow(var(--glow1)) drop-shadow(var(--glow2));
     }
-    .name{
-      font-weight:800; font-size:32px; text-align:center;
-      margin:6px 0 12px; letter-spacing:.2px;
-    }
-    .line{ text-align:center; margin:0; font-size:22px; line-height:1.35 }
-    .rule{ height:1px; background:#fff; opacity:.18; margin:16px auto 14px; width:92% }
+    .name{ font-weight:800; font-size:32px; text-align:center; margin:6px 0 12px; letter-spacing:.2px; }
+    .line{ text-align:center; margin:0; font-size:22px; line-height:1.35; }
+    .rule{ height:1px; background:#fff; opacity:.18; margin:18px auto 16px; width:92% }
     .address{
       text-align:center; font-size:24px; line-height:1.25; color:#fff; margin:18px 0 12px;
       text-decoration:underline; text-decoration-style:dotted; text-decoration-thickness:2px; text-underline-offset:8px;
@@ -71,7 +67,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/T_from_T_Mobile_logo.svg" alt="T-Mobile" />
       </div>
 
-      <!-- Texto exactamente como en el ejemplo -->
+      <!-- Texto 1:1 con el ejemplo -->
       <h1 class="name">Jose Arroyo</h1>
       <p class="line">Mobile Expert</p>
       <p class="line">T-Mobile;</p>
@@ -96,25 +92,23 @@
   </div>
 
   <script>
-    // vCard a descargar (igual que archivo .vcf)
+    // vCard para el botón (descarga robusta)
     const VCARD_TEXT = `BEGIN:VCARD
 VERSION:3.0
 N:Arroyo;Jose;;;
 FN:Jose Arroyo
 TITLE:Mobile Expert
 ORG:T-Mobile
-TEL;TYPE=CELL,VOICE:+1-787-469-1593
 EMAIL;TYPE=INTERNET:jose.arroyo29@t-mobile.com
+TEL;TYPE=CELL:+1-787-469-1593
 ADR;TYPE=WORK:;;100 San Patricio Ave Ste C-20;Guaynabo;PR;00968;USA
 END:VCARD`;
 
-    // Descarga robusta para móviles / webviews
     function downloadVCard(){
       try{
         const blob = new Blob([VCARD_TEXT],{type:'text/vcard;charset=utf-8'});
         const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url; a.download = 'Jose_Arroyo.vcf';
+        const a = document.createElement('a'); a.href = url; a.download = 'Jose_Arroyo.vcf';
         document.body.appendChild(a); a.click();
         setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 400);
       }catch(e){
@@ -123,7 +117,7 @@ END:VCARD`;
     }
     document.getElementById('add-contact').addEventListener('click', e => { e.preventDefault(); downloadVCard(); });
 
-    // Si tienes el enlace real de T-Life, colócalo aquí:
+    // Si tienes el link real de T-Life, ponlo aquí (ahora es placeholder):
     document.getElementById('tlife-link').href = '#';
   </script>
 </body>
